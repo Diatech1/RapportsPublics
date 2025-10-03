@@ -1,23 +1,6 @@
-/*
-Theme Name: Rapports Publics Sénégal
-Description: Thème WordPress officiel pour le répertoire national des rapports publics du Sénégal. Conçu pour la transparence et l'accès à l'information gouvernementale.
-Author: République du Sénégal
-Version: 1.0.0
-Requires at least: 6.0
-Tested up to: 6.4
-Requires PHP: 8.0
-License: GPL v2 or later
-License URI: https://www.gnu.org/licenses/gpl-2.0.html
-Text Domain: rapports-publics
-Tags: government, reports, transparency, responsive, accessibility
-*/
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-/* Design system for Rapports Publics - Official Senegal government document repository */
-
 :root {
-  /* Color scheme matching the original design */
   --primary: #1a3d7d;
   --secondary: #e63946;
   --accent: #457b9d;
@@ -56,7 +39,6 @@ img {
   padding: 0 1rem;
 }
 
-/* Header */
 header {
   position: sticky;
   top: 0;
@@ -128,11 +110,9 @@ nav a:hover::after {
   color: var(--primary);
 }
 
-/* Hero Section */
 .hero {
   height: 80vh;
-  background: linear-gradient(135deg, var(--primary), var(--accent)), url('assets/images/hero-section.png') center/cover no-repeat;
-  background-blend-mode: overlay;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
   position: relative;
   display: flex;
   align-items: center;
@@ -187,7 +167,6 @@ nav a:hover::after {
   transform: translateY(-2px);
 }
 
-/* Sections */
 section {
   padding: 5rem 0;
 }
@@ -199,7 +178,6 @@ section {
   color: var(--primary);
 }
 
-/* About */
 .about-content {
   max-width: 800px;
   margin: 0 auto;
@@ -208,7 +186,6 @@ section {
   line-height: 1.8;
 }
 
-/* FAQ */
 .faq-container {
   max-width: 800px;
   margin: 0 auto;
@@ -257,7 +234,6 @@ section {
   transform: rotate(180deg);
 }
 
-/* Reports Grid */
 .reports-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -324,7 +300,6 @@ section {
   color: var(--gray);
 }
 
-/* Footer */
 footer {
   background: var(--dark);
   color: white;
@@ -409,25 +384,6 @@ footer {
   margin-top: 3rem;
 }
 
-/* WordPress Specific */
-.wp-block-group {
-  margin: 0;
-}
-
-.alignwide {
-  margin-left: auto;
-  margin-right: auto;
-  clear: both;
-}
-
-.alignfull {
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
-  width: auto;
-  max-width: 1000%;
-}
-
-/* Responsive */
 @media (max-width: 992px) {
   .reports-grid {
     grid-template-columns: repeat(2, 1fr);
