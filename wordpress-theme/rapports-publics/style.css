@@ -457,6 +457,20 @@ input:focus, select:focus, textarea:focus {
     border: 0;
 }
 
+/* File Info Indicators */
+.file-info {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: var(--success-color);
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.file-info svg {
+    opacity: 0.8;
+}
+
 /* Print Styles */
 @media print {
     .site-header,

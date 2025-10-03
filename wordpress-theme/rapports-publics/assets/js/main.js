@@ -104,7 +104,7 @@
      * Filter dropdowns functionality
      */
     function initFilterDropdowns() {
-        $('#ministry-filter, #category-filter, #year-filter').on('change', function() {
+        $('#ministry-filter, #category-filter, #year-filter, #ministry-filter-category, #category-filter-ministry').on('change', function() {
             const value = $(this).val();
             if (value && value !== '') {
                 // Add loading state

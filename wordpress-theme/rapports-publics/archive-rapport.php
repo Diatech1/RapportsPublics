@@ -308,28 +308,24 @@ get_header(); ?>
 
                             <!-- Report Actions -->
                             <div class="report-actions">
-                                <a href="<?php the_permalink(); ?>" class="btn btn-secondary">
-                                    <?php _e('Voir le détail', 'rapports-publics'); ?>
+                                <a href="<?php the_permalink(); ?>" class="btn btn-primary">
+                                    <?php _e('Voir le Détail', 'rapports-publics'); ?>
                                 </a>
                                 
+                                <!-- File info only (download available on single page) -->
                                 <?php
                                 $file_url = get_post_meta(get_the_ID(), '_file_url', true);
-                                if ($file_url) :
-                                    $download_url = rapports_publics_get_download_url(get_the_ID());
+                                $file_size = get_post_meta(get_the_ID(), '_file_size', true);
+                                if ($file_url && $file_size) :
                                     ?>
-                                    <a href="<?php echo esc_url($download_url); ?>" 
-                                       class="btn"
-                                       onclick="trackDownload(<?php echo get_the_ID(); ?>, '<?php echo esc_js(get_the_title()); ?>')">
-                                        <?php _e('Télécharger', 'rapports-publics'); ?>
-                                        <?php
-                                        $file_size = get_post_meta(get_the_ID(), '_file_size', true);
-                                        if ($file_size) :
-                                            ?>
-                                            <small>(<?php echo esc_html($file_size); ?>)</small>
-                                            <?php
-                                        endif;
-                                        ?>
-                                    </a>
+                                    <span class="file-info">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <polyline points="14,2 14,8 20,8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                        <?php _e('PDF disponible', 'rapports-publics'); ?>
+                                        <small>(<?php echo esc_html($file_size); ?>)</small>
+                                    </span>
                                 <?php endif; ?>
                             </div>
 

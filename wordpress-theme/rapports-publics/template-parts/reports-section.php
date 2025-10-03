@@ -151,32 +151,26 @@ $latest_reports_query = new WP_Query(array(
 
                             <!-- Report Actions -->
                             <div class="report-actions">
-                                <a href="<?php the_permalink(); ?>" class="btn btn-secondary">
-                                    <?php _e('Voir le détail', 'rapports-publics'); ?>
+                                <a href="<?php the_permalink(); ?>" class="btn btn-primary">
+                                    <?php _e('Voir le Détail', 'rapports-publics'); ?>
                                 </a>
                                 
+                                <!-- File info indicator only -->
                                 <?php
                                 $file_url = get_post_meta(get_the_ID(), '_file_url', true);
+                                $file_size = get_post_meta(get_the_ID(), '_file_size', true);
                                 if ($file_url) :
-                                    $download_url = rapports_publics_get_download_url(get_the_ID());
                                     ?>
-                                    <a href="<?php echo esc_url($download_url); ?>" 
-                                       class="btn btn-primary"
-                                       onclick="trackDownload(<?php echo get_the_ID(); ?>, '<?php echo esc_js(get_the_title()); ?>')"
-                                       target="_blank">
+                                    <span class="file-indicator">
                                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <polyline points="14,2 14,8 20,8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                         </svg>
-                                        <?php _e('Télécharger', 'rapports-publics'); ?>
-                                        <?php
-                                        $file_size = get_post_meta(get_the_ID(), '_file_size', true);
-                                        if ($file_size) :
-                                            ?>
+                                        <?php _e('PDF', 'rapports-publics'); ?>
+                                        <?php if ($file_size) : ?>
                                             <small>(<?php echo esc_html($file_size); ?>)</small>
-                                            <?php
-                                        endif;
-                                        ?>
-                                    </a>
+                                        <?php endif; ?>
+                                    </span>
                                 <?php endif; ?>
                             </div>
 
@@ -432,6 +426,19 @@ $latest_reports_query = new WP_Query(array(
 .no-reports-content p {
     color: var(--text-color);
     opacity: 0.8;
+}
+
+/* File indicators */
+.file-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-color);
+    font-size: 0.875rem;
+    opacity: 0.8;
+    background: var(--border-color);
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--border-radius);
 }
 
 @media (max-width: 768px) {
