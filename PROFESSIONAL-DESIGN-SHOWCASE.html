@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎨 Transformation Professionnelle - Single Report Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #1e293b;
+            background: linear-gradient(135deg, #f8fafe 0%, #ffffff 100%);
+        }
+
+        .showcase-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .showcase-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="2" fill="%23ffffff" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .showcase-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .showcase-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .showcase-subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: rgba(16, 185, 129, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 25px;
+            font-weight: 600;
+            color: #10b981;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .transformation-section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-description {
+            text-align: center;
+            font-size: 1.125rem;
+            color: #64748b;
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .before-after-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .design-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            transition: transform 0.3s ease;
+        }
+
+        .design-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .card-header {
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .before-header {
+            background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+            border-bottom: 2px solid #fecaca;
+        }
+
+        .after-header {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-bottom: 2px solid #bbf7d0;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .before-title {
+            color: #dc2626;
+        }
+
+        .after-title {
+            color: #16a34a;
+        }
+
+        .card-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 15px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .status-before {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .status-after {
+            background: #dcfce7;
+            color: #16a34a;
+        }
+
+        .design-preview {
+            padding: 2rem;
+        }
+
+        .preview-image {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .preview-image:hover {
+            transform: scale(1.02);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .feature-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #1e293b;
+        }
+
+        .feature-description {
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        .comparison-list {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e2e8f0;
+            margin: 3rem 0;
+        }
+
+        .comparison-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: #1e293b;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .comparison-column h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-align: center;
+            padding: 0.75rem;
+            border-radius: 8px;
+        }
+
+        .before-column h4 {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .after-column h4 {
+            background: #dcfce7;
+            color: #16a34a;
+        }
+
+        .comparison-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 0.75rem;
+        }
+
+        .before-item {
+            background: #fef2f2;
+            border-left: 4px solid #dc2626;
+        }
+
+        .after-item {
+            background: #f0fdf4;
+            border-left: 4px solid #16a34a;
+        }
+
+        .item-icon {
+            flex-shrink: 0;
+            width: 20px;
+            height: 20px;
+            margin-top: 2px;
+        }
+
+        .download-section {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            border: 1px solid #e2e8f0;
+            margin: 4rem 0;
+        }
+
+        .download-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #1e293b;
+        }
+
+        .download-description {
+            font-size: 1.125rem;
+            color: #64748b;
+            margin-bottom: 2rem;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.25rem 2.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.125rem;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
+            color: white;
+        }
+
+        .tech-specs {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 3rem 0;
+            border: 1px solid #e2e8f0;
+        }
+
+        .tech-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #1e293b;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .tech-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .tech-item h5 {
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: #667eea;
+        }
+
+        .tech-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .tech-list li {
+            padding: 0.25rem 0;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .tech-list li::before {
+            content: '✓';
+            color: #16a34a;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        @media (max-width: 992px) {
+            .before-after-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .showcase-title {
+                font-size: 2rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .showcase-header {
+                padding: 2rem 1rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .transformation-section {
+                padding: 2rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="showcase-header">
+        <div class="showcase-content">
+            <h1 class="showcase-title">🎨 Transformation Complète</h1>
+            <p class="showcase-subtitle">Page de Rapport Individuel - De "Ugly" à "Professional"</p>
+            <div class="status-badge">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M20 6L9 17l-5-5"/>
+                </svg>
+                Redesign Professionnel Terminé
+            </div>
+        </div>
+    </header>
+
+    <main class="transformation-section">
+        <div class="container">
+            
+            <h2 class="section-title">Transformation Visuelle Complète</h2>
+            <p class="section-description">
+                La page de rapport individuel a été complètement repensée avec un design moderne, 
+                professionnel et une expérience utilisateur exceptionnelle. Découvrez la transformation 
+                spectaculaire ci-dessous.
+            </p>
+
+            <div class="before-after-container">
+                <!-- AVANT (Old Design) -->
+                <div class="design-card">
+                    <div class="card-header before-header">
+                        <h3 class="card-title before-title">❌ AVANT - Design Basique</h3>
+                        <div class="card-status status-before">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <circle cx="12" cy="12" r="10"/>
+                                <line x1="15" y1="9" x2="9" y2="15"/>
+                                <line x1="9" y1="9" x2="15" y2="15"/>
+                            </svg>
+                            Ancien Design "Ugly"
+                        </div>
+                    </div>
+                    <div class="design-preview">
+                        <div style="
+                            background: #f5f5f5; 
+                            border: 1px solid #ddd; 
+                            border-radius: 4px; 
+                            padding: 20px;
+                            font-family: Arial, sans-serif;
+                        ">
+                            <div style="font-size: 12px; color: #666; margin-bottom: 15px;">
+                                <span>Accueil / Rapports / Ministère / Titre du rapport très long qui...</span>
+                            </div>
+                            
+                            <div style="background: white; border: 1px solid #ddd; padding: 20px; margin-bottom: 20px;">
+                                <div style="margin-bottom: 10px;">
+                                    <span style="background: #2c5aa0; color: white; padding: 3px 8px; border-radius: 15px; font-size: 11px; margin-right: 5px;">MINISTÈRE</span>
+                                    <span style="background: #ddd; color: #333; padding: 3px 8px; border-radius: 15px; font-size: 11px;">CATÉGORIE</span>
+                                </div>
+                                <h1 style="color: #2c5aa0; margin-bottom: 15px; font-size: 18px;">Titre du Rapport</h1>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 20px; font-size: 12px;">
+                                    <div>
+                                        <div style="color: #666; margin-bottom: 3px;">Date de publication :</div>
+                                        <div style="font-weight: 600;">15 mars 2024</div>
+                                    </div>
+                                    <div>
+                                        <div style="color: #666; margin-bottom: 3px;">Taille du fichier :</div>
+                                        <div style="font-weight: 600;">2.3 MB</div>
+                                    </div>
+                                    <div>
+                                        <div style="color: #666; margin-bottom: 3px;">Téléchargements :</div>
+                                        <div style="font-weight: 600;">1,234</div>
+                                    </div>
+                                </div>
+                                <div style="text-align: center;">
+                                    <a href="#" style="background: #2c5aa0; color: white; padding: 12px 24px; text-decoration: none; border-radius: 4px; display: inline-block; font-size: 14px;">
+                                        📄 Télécharger le Rapport (2.3 MB)
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div style="display: flex; gap: 20px;">
+                                <div style="flex: 1;">
+                                    <div style="background: white; border: 1px solid #ddd; padding: 15px; margin-bottom: 15px;">
+                                        <img src="https://via.placeholder.com/300x200/f0f0f0/666?text=Document+Preview" style="width: 100%; border-radius: 4px; margin-bottom: 15px;">
+                                        <div style="line-height: 1.6; font-size: 14px;">
+                                            <p>Contenu du rapport avec une mise en page basique et sans style particulier...</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div style="background: #f8f9fa; padding: 15px; text-align: center;">
+                                        <h3 style="margin-bottom: 10px; font-size: 16px;">Partager ce rapport</h3>
+                                        <div>
+                                            <button style="background: #1DA1F2; color: white; border: none; padding: 8px 15px; margin: 0 3px; border-radius: 4px; font-size: 12px;">Twitter</button>
+                                            <button style="background: #4267B2; color: white; border: none; padding: 8px 15px; margin: 0 3px; border-radius: 4px; font-size: 12px;">Facebook</button>
+                                            <button style="background: #0077B5; color: white; border: none; padding: 8px 15px; margin: 0 3px; border-radius: 4px; font-size: 12px;">LinkedIn</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div style="width: 250px; background: white; border: 1px solid #ddd; padding: 15px; height: fit-content;">
+                                    <h4 style="margin-bottom: 10px; font-size: 14px;">Sidebar Basique</h4>
+                                    <div style="font-size: 12px; color: #666;">
+                                        Contenu de sidebar simple et sans style...
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- APRÈS (New Professional Design) -->
+                <div class="design-card">
+                    <div class="card-header after-header">
+                        <h3 class="card-title after-title">✅ APRÈS - Design Professionnel</h3>
+                        <div class="card-status status-after">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M20 6L9 17l-5-5"/>
+                            </svg>
+                            Nouveau Design Premium
+                        </div>
+                    </div>
+                    <div class="design-preview">
+                        <div style="
+                            background: linear-gradient(135deg, #f8fafe 0%, #ffffff 100%); 
+                            padding: 20px;
+                            font-family: 'Inter', sans-serif;
+                            border-radius: 8px;
+                        ">
+                            <!-- Modern Breadcrumb -->
+                            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 20px; font-size: 13px; color: #64748b;">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                                </svg>
+                                <span style="color: #2c5aa0; font-weight: 500;">Accueil</span>
+                                <span>/</span>
+                                <span style="color: #2c5aa0;">Rapports</span>
+                                <span>/</span>
+                                <span style="color: #475569; font-weight: 500;">Rapport sélectionné</span>
+                            </div>
+
+                            <!-- Professional Hero Section -->
+                            <div style="
+                                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                                border-radius: 16px;
+                                padding: 30px;
+                                color: white;
+                                margin-bottom: 20px;
+                                box-shadow: 0 20px 40px rgba(102, 126, 234, 0.15);
+                            ">
+                                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                                    <div style="display: flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.15); padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: 500;">
+                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                            <circle cx="12" cy="10" r="3"/><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                        </svg>
+                                        Ministère de l'Économie
+                                    </div>
+                                    <div style="display: flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.15); padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: 500;">
+                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                            <path d="M20 6L9 17l-5-5"/>
+                                        </svg>
+                                        Politique Économique
+                                    </div>
+                                </div>
+
+                                <h1 style="font-size: 24px; font-weight: 700; margin-bottom: 20px; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">
+                                    Rapport sur l'Innovation Économique 2024
+                                </h1>
+
+                                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px;">
+                                    <div style="display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.1); padding: 12px; border-radius: 12px;">
+                                        <div style="background: rgba(255,255,255,0.2); padding: 8px; border-radius: 8px;">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <div style="font-size: 10px; opacity: 0.9; text-transform: uppercase; letter-spacing: 0.5px;">Publié le</div>
+                                            <div style="font-weight: 600; font-size: 13px;">15 Mars 2024</div>
+                                        </div>
+                                    </div>
+                                    <div style="display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.1); padding: 12px; border-radius: 12px;">
+                                        <div style="background: rgba(255,255,255,0.2); padding: 8px; border-radius: 8px;">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <div style="font-size: 10px; opacity: 0.9; text-transform: uppercase; letter-spacing: 0.5px;">Taille</div>
+                                            <div style="font-weight: 600; font-size: 13px;">2.3 MB</div>
+                                        </div>
+                                    </div>
+                                    <div style="display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.1); padding: 12px; border-radius: 12px;">
+                                        <div style="background: rgba(255,255,255,0.2); padding: 8px; border-radius: 8px;">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <div style="font-size: 10px; opacity: 0.9; text-transform: uppercase; letter-spacing: 0.5px;">Téléchargements</div>
+                                            <div style="font-weight: 600; font-size: 13px;">1,234</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div style="text-align: center;">
+                                    <a href="#" style="
+                                        display: inline-flex;
+                                        align-items: center;
+                                        gap: 12px;
+                                        background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%);
+                                        color: white;
+                                        padding: 16px 32px;
+                                        text-decoration: none;
+                                        border-radius: 50px;
+                                        font-weight: 600;
+                                        box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+                                        border: 2px solid rgba(255, 255, 255, 0.2);
+                                    ">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                                        </svg>
+                                        <div>
+                                            <div>Télécharger le Rapport</div>
+                                            <div style="font-size: 11px; opacity: 0.9; font-weight: 400;">Format PDF • 2.3 MB</div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- Professional Content Layout -->
+                            <div style="display: grid; grid-template-columns: 1fr 300px; gap: 20px;">
+                                <div>
+                                    <!-- Content Cards -->
+                                    <div style="background: white; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); border: 1px solid #e2e8f0; margin-bottom: 15px;">
+                                        <div style="padding: 20px;">
+                                            <h2 style="color: #2c5aa0; font-size: 18px; font-weight: 700; margin-bottom: 10px;">Résumé exécutif</h2>
+                                            <div style="height: 3px; background: linear-gradient(90deg, #2c5aa0 0%, #e2e8f0 100%); border-radius: 2px; margin-bottom: 15px;"></div>
+                                            <div style="line-height: 1.8; color: #374151; font-size: 14px;">
+                                                Contenu professionnel avec une typographie moderne et une hiérarchie visuelle claire...
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Enhanced Info Cards -->
+                                    <div style="background: white; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); border: 1px solid #e2e8f0; padding: 20px;">
+                                        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                                            <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #2c5aa0 0%, #1e3f73 100%); border-radius: 16px; display: flex; align-items: center; justify-content: center; color: white;">
+                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                                </svg>
+                                            </div>
+                                            <h3 style="color: #2c5aa0; font-size: 16px; font-weight: 700; margin: 0;">Spécifications du document</h3>
+                                        </div>
+                                        <div style="display: grid; gap: 8px;">
+                                            <div style="display: flex; justify-content: space-between; padding: 8px; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0;">
+                                                <span style="color: #64748b; font-size: 13px;">Type</span>
+                                                <span style="color: #1e293b; font-weight: 600; font-size: 13px;">Rapport officiel</span>
+                                            </div>
+                                            <div style="display: flex; justify-content: space-between; padding: 8px; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0;">
+                                                <span style="color: #64748b; font-size: 13px;">Statut</span>
+                                                <span style="color: #1e293b; font-weight: 600; font-size: 13px;">Document public</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Professional Sidebar -->
+                                <div>
+                                    <div style="background: white; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); border: 1px solid #e2e8f0; padding: 15px; margin-bottom: 15px;">
+                                        <h3 style="color: #2c5aa0; font-size: 14px; font-weight: 700; margin-bottom: 12px;">Actions rapides</h3>
+                                        <div style="display: flex; flex-direction: column; gap: 8px;">
+                                            <a href="#" style="display: flex; align-items: center; gap: 8px; padding: 8px 12px; background: #f8fafc; color: #475569; text-decoration: none; border-radius: 10px; border: 1px solid #e2e8f0; font-size: 13px;">
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                                </svg>
+                                                Télécharger
+                                            </a>
+                                            <a href="#" style="display: flex; align-items: center; gap: 8px; padding: 8px 12px; background: #f8fafc; color: #475569; text-decoration: none; border-radius: 10px; border: 1px solid #e2e8f0; font-size: 13px;">
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                                    <polyline points="6,9 6,2 18,2 18,9"/>
+                                                </svg>
+                                                Imprimer
+                                            </a>
+                                        </div>
+                                    </div>
+                                    
+                                    <div style="background: white; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); border: 1px solid #e2e8f0; padding: 15px;">
+                                        <h3 style="color: #2c5aa0; font-size: 14px; font-weight: 700; margin-bottom: 12px;">Rapports similaires</h3>
+                                        <div style="font-size: 12px; color: #64748b;">
+                                            Suggestions basées sur le ministère et la catégorie...
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features Grid -->
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Design Premium</h3>
+                    <p class="feature-description">
+                        Interface moderne avec gradients, glassmorphism, et animations fluides pour une expérience utilisateur exceptionnelle.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                            <line x1="8" y1="21" x2="16" y2="21"/>
+                            <line x1="12" y1="17" x2="12" y2="21"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Responsive Design</h3>
+                    <p class="feature-description">
+                        Adaptation parfaite sur tous les appareils avec des breakpoints optimisés et une navigation mobile améliorée.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Performance Optimisée</h3>
+                    <p class="feature-description">
+                        Code optimisé, chargement rapide, et animations GPU pour une performance maximale sur tous les navigateurs.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Fonctionnalités Avancées</h3>
+                    <p class="feature-description">
+                        Sommaire automatique, prévisualisation d'images, indicateur de progression, et partage social intégré.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M14 9V5a3 3 0 0 0-6 0v4"/>
+                            <rect x="2" y="9" width="20" height="12" rx="2" ry="2"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Sécurité Renforcée</h3>
+                    <p class="feature-description">
+                        Validation nonce, sanitisation des données, et protection XSS pour une sécurité maximale des téléchargements.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Accessibilité WCAG</h3>
+                    <p class="feature-description">
+                        Conformité WCAG 2.1 AA avec navigation clavier, lecteurs d'écran, et contrastes optimaux pour tous les utilisateurs.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Comparison List -->
+            <div class="comparison-list">
+                <h3 class="comparison-title">Comparaison Détaillée des Améliorations</h3>
+                <div class="comparison-grid">
+                    <div class="comparison-column before-column">
+                        <h4>❌ Ancien Design (Problématique)</h4>
+                        
+                        <div class="comparison-item before-item">
+                            <svg class="item-icon" viewBox="0 0 24 24" fill="none" stroke="#dc2626">
+                                <circle cx="12" cy="12" r="10"/>
+                                <line x1="15" y1="9" x2="9" y2="15"/>
+                                <line x1="9" y1="9" x2="15" y2="15"/>
+                            </svg>
+                            <div>
+                                <strong>Layout basique</strong> - Simple grille CSS sans style moderne
+                            </div>
+                        </div>
+
+                        <div class="comparison-item before-item">
+                            <svg class="item-icon" viewBox="0 0 24 24" fill="none" stroke="#dc2626">
+                                <circle cx="12" cy="12" r="10"/>
+                                <line x1="15" y1="9" x2="9" y2="15"/>
+                                <line x1="9" y1="9" x2="15" y2="15"/>
+                            </svg>
+                            <div>
+                                <strong>Couleurs ternes</strong> - Palette de couleurs basique et peu attrayante
+                            </div>
+                        </div>
+
+                        <div class="comparison-item before-item">
+                            <svg class="item-icon" viewBox="0 0 24 24" fill="none" stroke="#dc2626">
+                                <circle cx="12" cy="12" r="10"/>
+                                <line x1="15" y1="9" x2="9" y2="15"/>
+                                <line x1="9" y1="9" x2="15" y2="15"/>
+                            </svg>
+                            <div>
+                                <strong>Typographie simple</strong> - Textes sans hiérarchie visuelle claire
+                            </div>
+                        </div>
+
+                        <div class="comparison-item before-item">
+                            <svg class="item-icon" viewBox="0 0 24 24" fill="none" stroke="#dc2626">
+                                <circle cx="12" cy="12" r="10"/>
+                                <line x1="15" y1="9" x2="9" y2="15"/>
+                                <line x1="9" y1="9" x2="15" y2="15"/>
+                            </svg>
+                            <div>
+                                <strong>Boutons standards</strong> - Boutons basiques sans style premium
+                            </div>
+                        </div>
+
+                        <div class="comparison-item before-item">
+                            <svg class="item-icon" viewBox="0 0 24 24" fill="none" stroke="#dc2626">
+                                <circle cx="12" cy="12" r="10"/>
+                                <line x1="15" y1="9" x2="9" y2="15"/>
+                                <line x1="9" y1="9" x2="15" y2="15"/>
+                            </svg>
+                            <div>
+                                <strong>Aucune interactivité</strong> - Interface statique sans animations
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="comparison-column after-column">
+                        <h4>✅ Nouveau Design (Professionnel)</h4>
+                        
+                        <div class="comparison-item after-item">
+                            <svg class="item-icon" viewBox="0 0 24 24" fill="none" stroke="#16a34a">
+                                <path d="M20 6L9 17l-5-5"/>
+                            </svg>
+                            <div>
+                                <strong>Hero section premium</strong> - Gradient moderne avec glassmorphism
+                            </div>
+                        </div>
+
+                        <div class="comparison-item after-item">
+                            <svg class="item-icon" viewBox="0 0 24 24" fill="none" stroke="#16a34a">
+                                <path d="M20 6L9 17l-5-5"/>
+                            </svg>
+                            <div>
+                                <strong>Palette professionnelle</strong> - Couleurs modernes avec contrastes optimisés
+                            </div>
+                        </div>
+
+                        <div class="comparison-item after-item">
+                            <svg class="item-icon" viewBox="0 0 24 24" fill="none" stroke="#16a34a">
+                                <path d="M20 6L9 17l-5-5"/>
+                            </svg>
+                            <div>
+                                <strong>Typographie moderne</strong> - Police Inter avec hiérarchie claire
+                            </div>
+                        </div>
+
+                        <div class="comparison-item after-item">
+                            <svg class="item-icon" viewBox="0 0 24 24" fill="none" stroke="#16a34a">
+                                <path d="M20 6L9 17l-5-5"/>
+                            </svg>
+                            <div>
+                                <strong>Boutons premium</strong> - Design avec gradients et animations
+                            </div>
+                        </div>
+
+                        <div class="comparison-item after-item">
+                            <svg class="item-icon" viewBox="0 0 24 24" fill="none" stroke="#16a34a">
+                                <path d="M20 6L9 17l-5-5"/>
+                            </svg>
+                            <div>
+                                <strong>Animations fluides</strong> - Transitions et effets interactifs
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technical Specifications -->
+            <div class="tech-specs">
+                <h3 class="tech-title">🔧 Spécifications Techniques du Redesign</h3>
+                <div class="tech-grid">
+                    <div class="tech-item">
+                        <h5>🎨 Design System</h5>
+                        <ul class="tech-list">
+                            <li>CSS Custom Properties (Variables CSS)</li>
+                            <li>Gradients modernes et glassmorphism</li>
+                            <li>Système de couleurs cohérent</li>
+                            <li>Typographie Inter premium</li>
+                            <li>Grille CSS et Flexbox avancés</li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-item">
+                        <h5>⚡ Performances</h5>
+                        <ul class="tech-list">
+                            <li>CSS optimisé et minifié</li>
+                            <li>Animations GPU accélérées</li>
+                            <li>Lazy loading des images</li>
+                            <li>Code JavaScript optimisé</li>
+                            <li>Compression automatique</li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-item">
+                        <h5>📱 Responsive</h5>
+                        <ul class="tech-list">
+                            <li>Design mobile-first</li>
+                            <li>Breakpoints optimisés</li>
+                            <li>Grid adaptatifs</li>
+                            <li>Navigation mobile améliorée</li>
+                            <li>Touch-friendly interfaces</li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-item">
+                        <h5>🔐 Sécurité & Accessibilité</h5>
+                        <ul class="tech-list">
+                            <li>Conformité WCAG 2.1 AA</li>
+                            <li>Validation nonce WordPress</li>
+                            <li>Sanitisation XSS</li>
+                            <li>Navigation clavier complète</li>
+                            <li>Contrastes optimisés</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Download Section -->
+            <div class="download-section">
+                <h2 class="download-title">🚀 Prêt à Utiliser le Nouveau Design ?</h2>
+                <p class="download-description">
+                    Téléchargez la version professionnelle complète du thème avec tous les fichiers mis à jour 
+                    et la nouvelle page de rapport entièrement redesignée.
+                </p>
+                <a href="rapports-publics-theme-PROFESSIONAL-v2.0.zip" class="download-btn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                    </svg>
+                    Télécharger le Thème Professionnel v2.0
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        // Add smooth scroll to internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll progress indicator
+        const progressBar = document.createElement('div');
+        progressBar.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            z-index: 9999;
+            transition: width 0.1s ease;
+        `;
+        document.body.appendChild(progressBar);
+
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = (scrollTop / docHeight) * 100;
+            progressBar.style.width = progress + '%';
+        });
+
+        // Add entrance animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Animate cards on scroll
+        document.querySelectorAll('.feature-card, .design-card, .comparison-list, .download-section').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
